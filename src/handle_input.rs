@@ -1,23 +1,18 @@
 extern crate colored; // not needed in Rust 2018
+use crate::store_output;
 use colored::*;
 
 pub fn handle_input(input: &mut String, player_name: &str, last_input: bool) -> String {
     if last_input {
-        println!(
-            "{}",
-            "!!!===============NO CHEATING===============!!!\n"
-                .repeat(60)
-                .italic()
-                .red()
-        );
+        store_output::no_cheating();
     }
 
-    let mut done = false;
     //copying input value to the same name. To fix mutable reference problem
     let mut input = input;
 
-    println!("------{}------\n", player_name.bold());
-    println!("{}", "Your Move:".bold().blink(),);
+    store_output::player_turn(player_name);
+
+    let mut done = false;
     //looping until user inputs valid game move
     while !done {
         match std::io::stdin().read_line(&mut input) {
@@ -39,13 +34,8 @@ pub fn handle_input(input: &mut String, player_name: &str, last_input: bool) -> 
                     done = true;
                     println!("\n");
                 } else {
-                    println!(
-                        "\n{}, your move can be either {}, {} or {}.  Try again:",
-                        "INVALID MOVE!".bold().red(),
-                        "'rock'".italic().purple(),
-                        "'paper'".italic().blue(),
-                        "'scissors'".italic().yellow()
-                    );
+                    //Invalid move details
+                    store_output::invalid_move();
 
                     //clearing input to start from an empty string
 

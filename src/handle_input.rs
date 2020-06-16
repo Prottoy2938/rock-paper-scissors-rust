@@ -1,20 +1,23 @@
-pub fn handle_input(input: &mut String, player_name: &str, last_input: bool) {
-    //TODO: minify this code
+extern crate colored; // not needed in Rust 2018
+use colored::*;
+
+pub fn handle_input(input: &mut String, player_name: &str, last_input: bool) -> String {
     if last_input {
-        let mut counter = 0;
-        while counter < 40 {
-            println!("!!!===============NO CHEATING===============!!!");
-            counter += 1;
-        }
-        println!("\n")
+        println!(
+            "{}",
+            "!!!===============NO CHEATING===============!!!\n"
+                .repeat(60)
+                .italic()
+                .red()
+        );
     }
 
     let mut done = false;
     //copying input value to the same name. To fix mutable reference problem
     let mut input = input;
 
-    println!("====={}======\n", player_name);
-    println!("Your Move: ");
+    println!("------{}------\n", player_name.bold());
+    println!("{}", "Your Move:".bold().blink(),);
     //looping until user inputs valid game move
     while !done {
         match std::io::stdin().read_line(&mut input) {
@@ -37,13 +40,20 @@ pub fn handle_input(input: &mut String, player_name: &str, last_input: bool) {
                     println!("\n");
                 } else {
                     println!(
-                        "\nINVALID MOVE!, your move can be either 'Rock', 'Paper' or 'Scissors'.  Try again"
-                    )
+                        "\n{}, your move can be either {}, {} or {}.  Try again:",
+                        "INVALID MOVE!".bold().red(),
+                        "'rock'".italic().purple(),
+                        "'paper'".italic().blue(),
+                        "'scissors'".italic().yellow()
+                    );
+
+                    //clearing input to start from an empty string
+
+                    input.clear();
                 }
             }
             Err(_e) => println!("\nSomething went wrong\n"),
         }
-        //clearing input to start from an empty string
-        input.clear();
     }
+    input.to_lowercase()
 }

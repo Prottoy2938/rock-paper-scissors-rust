@@ -1,6 +1,4 @@
-extern crate colored; // not needed in Rust 2018
 use crate::store_output;
-use colored::*;
 
 pub fn handle_input(input: &mut String, player_name: &str, last_input: bool) -> String {
     if last_input {
@@ -38,7 +36,6 @@ pub fn handle_input(input: &mut String, player_name: &str, last_input: bool) -> 
                     store_output::invalid_move();
 
                     //clearing input to start from an empty string
-
                     input.clear();
                 }
             }

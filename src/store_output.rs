@@ -14,7 +14,7 @@ pub fn greetings() {
 pub fn end_game() {
     println!(
         "{}",
-        "\n\n====================== END =============================="
+        "\n\n====================== END ============================"
             .bold()
             .cyan()
     )
@@ -43,4 +43,8 @@ pub fn invalid_move() {
 pub fn player_turn(player: &str) {
     println!("------------{}------------\n", player.bold());
     println!("{}", "Your Move:".bold().blink(),);
+}
+
+pub fn play_again() {
+    println!("\n\n{}", "Do you want to play again? Y/N".bold().purple())
 }

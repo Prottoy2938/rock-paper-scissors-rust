@@ -1,4 +1,4 @@
-extern crate colored; // not needed in Rust 2018
+extern crate colored; 
 use colored::*;
 
 pub fn get_result(player1: &String, player2: &String) {

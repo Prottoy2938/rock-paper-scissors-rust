@@ -41,6 +41,6 @@ pub fn invalid_move() {
 }
 
 pub fn player_turn(player: &str) {
-    println!("------{}------\n", player.bold());
+    println!("------------{}------------\n", player.bold());
     println!("{}", "Your Move:".bold().blink(),);
 }
